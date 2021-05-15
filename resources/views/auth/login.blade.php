@@ -10,8 +10,8 @@
 			<!-- begin login-header -->
 			<div class="login-header">
 				<div class="brand">
-					<span class="logo"></span> <b>Color</b> Admin
-					<small>responsive bootstrap 4 admin template</small>
+					<span class="logo"></span> <b>Iot</b> System
+					<small>System Monitoring Banjir</small>
 				</div>
 				<div class="icon">
 					<i class="fa fa-lock"></i>

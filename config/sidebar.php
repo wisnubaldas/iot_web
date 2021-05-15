@@ -18,6 +18,11 @@ return [
 			],
 			[
 				'icon' => 'fa fa-th-large',
+				'title' => 'Gate Pengunjung',
+				'url' => '/gate',
+			],
+			[
+				'icon' => 'fa fa-th-large',
 				'title' => 'User Config',
 				'url' => 'javascript:;',
 				'caret' => true,
@@ -28,8 +33,8 @@ return [
 						'url' => '#',
 						'title' => 'Add User'
 					],[
-						'url' => '#',
-						'title' => 'Role Access'
+						'url' => '/user/roles',
+						'title' => 'Roles Access'
 					]]
 			]
 		]

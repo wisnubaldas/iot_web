@@ -406,7 +406,15 @@ let indikator = function(nilai) {
                   <p> Level air ${parseInt(nilai)} Kb, berdasarkan debit air </p>
                 </div>
               </div>`;
-  $('.indikator').html(tpl)
+  
+		$.ajax({
+			method: "GET",
+			url: "/banjir/get_data",
+			data: { station_id: 1, level_banjir: parseInt(nilai) }
+		})
+			.done(function( msg ) {
+				$('.indikator').html(tpl)
+			});	
 }
 // chart bootstrap
 var Chart = function () {

@@ -37,32 +37,28 @@
 					<tr>
 						<th width="1%"></th>
 						<th width="1%" data-orderable="false"></th>
-						<th class="text-nowrap">Rendering engine</th>
-						<th class="text-nowrap">Browser</th>
-						<th class="text-nowrap">Platform(s)</th>
-						<th class="text-nowrap">Engine version</th>
-						<th class="text-nowrap">CSS grade</th>
+						<th class="text-nowrap">Name</th>
+						<th class="text-nowrap">Email</th>
+						<th class="text-nowrap">Verify Date</th>
+						<th width="1%" data-orderable="false"></th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr class="odd gradeX">
-						<td width="1%" class="f-s-600 text-inverse">1</td>
-						<td width="1%" class="with-img"><img src="/assets/img/user/user-1.jpg" class="img-rounded height-30" /></td>
-						<td>Trident</td>
-						<td>Internet Explorer 4.0</td>
-						<td>Win 95+</td>
-						<td>4</td>
-						<td>X</td>
-					</tr>
-					<tr class="even gradeC">
-						<td class="f-s-600 text-inverse">2</td>
-						<td class="with-img"><img src="/assets/img/user/user-2.jpg" class="img-rounded height-30" /></td>
-						<td>Trident</td>
-						<td>Internet Explorer 5.0</td>
-						<td>Win 95+</td>
-						<td>5</td>
-						<td>C</td>
-					</tr>
+					@foreach ($users as $item)
+						<tr class="{{$loop->index%2 == 0?'odd':'even'}}">
+							<td width="1%" class="f-s-600 text-inverse">{{$item->id}}</td>
+							<td width="1%" class="with-img"><img src="/assets/img/user/user-1.jpg" class="img-rounded height-30" /></td>
+							<td>{{$item->name}}</td>
+							<td>{{$item->email}}</td>
+							<td>{{$item->email_verified_at}}</td>
+							<td>
+								<div class="btn-group ">
+									<button class="btn btn-xs btn-pink">Delete</button>
+									<button class="btn btn-xs btn-purple">Edit</button>
+								</div>
+							</td>
+						</tr>
+					@endforeach
         </tbody>
       </table>
 		</div>
