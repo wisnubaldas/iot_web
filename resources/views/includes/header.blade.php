@@ -61,7 +61,7 @@
 				</div>
 			</form>
 		</li>
-		<li class="dropdown">
+		{{-- <li class="dropdown">
 			<a href="#" data-toggle="dropdown" class="dropdown-toggle f-s-14">
 				<i class="fa fa-bell"></i>
 				<span class="label">5</span>
@@ -122,7 +122,7 @@
 					<a href="javascript:;">View more</a>
 				</div>
 			</div>
-		</li>
+		</li> --}}
 		@isset($headerLanguageBar)
 		<li class="dropdown navbar-language">
 			<a href="#" class="dropdown-toggle pr-1 pl-1 pr-sm-3 pl-sm-3" data-toggle="dropdown">
@@ -141,15 +141,15 @@
 		@endisset
 		<li class="dropdown navbar-user">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				<img src="/assets/img/user/user-13.jpg" alt="" /> 
+				<img src="/assets/img/user/user-7.jpg" alt="" /> 
 				<span class="d-none d-md-inline">{{auth()->user()->name}}</span> <b class="caret"></b>
 			</a>
 			<div class="dropdown-menu dropdown-menu-right">
-				<a href="javascript:;" class="dropdown-item">Edit Profile</a>
+				{{-- <a href="javascript:;" class="dropdown-item">Edit Profile</a>
 				<a href="javascript:;" class="dropdown-item"><span class="badge badge-danger pull-right">2</span> Inbox</a>
 				<a href="javascript:;" class="dropdown-item">Calendar</a>
-				<a href="javascript:;" class="dropdown-item">Setting</a>
-				<div class="dropdown-divider"></div>
+				<a href="javascript:;" class="dropdown-item">Setting</a> --}}
+				{{-- <div class="dropdown-divider"></div> --}}
 				<form action="{{route('logout')}}" method="POST">
 					@csrf
 					<button type="submit" class="dropdown-item">Log Out</button>

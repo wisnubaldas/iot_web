@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return redirect('/login');
 });
 Route::prefix('banjir')->group(function(){
     Route::post('/get_data',[App\Http\Controllers\Backend\BanjirController::class, 'get_data']);
