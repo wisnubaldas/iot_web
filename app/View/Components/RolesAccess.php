@@ -11,9 +11,12 @@ class RolesAccess extends Component
      *
      * @return void
      */
-    public function __construct()
+    public $roles;
+    public $id_table;
+    public function __construct($roles,$idtable)
     {
-        //
+        $this->roles = $roles;
+        $this->id_table = $idtable;
     }
 
     /**

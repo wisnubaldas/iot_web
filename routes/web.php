@@ -38,8 +38,12 @@ Route::prefix('suhu')->middleware('auth')->group(function(){
 
 Route::prefix('user')->middleware('auth')->group(function(){
     Route::get('/',[App\Http\Controllers\Backend\UserController::class, 'index']);
-    Route::get('/roles',[App\Http\Controllers\Backend\UserController::class, 'roles']);
-
+    Route::group(['middleware' => ['role:super']], function () {
+        Route::get('/roles',[App\Http\Controllers\Backend\UserController::class, 'roles']);
+        Route::post('/roles/create',[App\Http\Controllers\Backend\UserController::class, 'create_roles']);
+        Route::get('/roles/delete/{apa}/{id}',[App\Http\Controllers\Backend\UserController::class, 'delete_roles']);
+    });
+    
 });
 
 Route::prefix('gate')->middleware('auth')->group(function(){

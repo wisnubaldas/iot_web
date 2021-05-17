@@ -47,8 +47,30 @@
   <div class="tab-content p-15 rounded bg-white mb-4">
     <!-- begin tab-pane -->
     <div class="tab-pane fade active show" id="nav-pills-tab-1">
-      <h3 class="m-t-10">Roles Access</h3>
-      <x-roles-access />
+        <!-- roles komponent -->
+        <div class="row">
+          <div class="col-4">
+            <form action="/user/roles/create" method="POST">
+              @csrf
+              <x-form.input label="Create Roles" type="text" name="roles" id="roles"/>
+							<button class="btn btn-green btn-block" type="submit">
+                Create Roles
+              </button>
+            </form>
+            <form action="/user/roles/create" method="POST">
+              @csrf
+              <x-form.input label="Create Access" type="text" name="access" id="access"/>
+							<button class="btn btn-success btn-block" type="submit">
+                Create Access
+              </button>
+            </form>
+          </div>
+          <div class="col-8">
+            <x-roles-access :roles="$roles" idtable="role-tbl"/>
+            <x-roles-access :roles="$access" idtable="access-tbl"/>
+
+          </div>
+        </div>
     </div>
     <!-- end tab-pane -->
     <!-- begin tab-pane -->
@@ -73,5 +95,14 @@
 	<script src="/assets/plugins/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
 	<script src="/assets/plugins/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
 	<script src="/assets/plugins/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
-	<script src="/assets/js/demo/table-manage-default.demo.js"></script>
+  <script>
+    jQuery(function(){
+      $('#role-tbl').DataTable({
+          responsive: true
+      });
+      $('#access-tbl').DataTable({
+          responsive: true
+      });
+    })
+  </script>
 @endpush
