@@ -30,7 +30,7 @@ return [
 						'url' => '/user',
 						'title' => 'Grid User'
 					],[
-						'url' => '#',
+						'url' => '/user/create',
 						'title' => 'Add User'
 					],[
 						'url' => '/user/roles',

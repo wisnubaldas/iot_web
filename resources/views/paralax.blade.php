@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<title>IoT Web Apps | Portal Seputar Project IoT </title>
+	<title>{{config('paralax.title')}}</title>
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
@@ -35,5 +35,16 @@
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="/js/one-page-parallax/app.min.js"></script>
 	<!-- ================== END BASE JS ================== -->
+	<style>
+		.header .navbar-brand .brand-logo {
+				border: 15px solid transparent;
+				/* border-color: #00acac #007979 #004646; */
+				background-image: url(/img/bg/baldas.jpeg);
+				float: left;
+				margin-right: .625rem;
+				-webkit-border-radius: 20px;
+				border-radius: 20px;
+		}
+	</style>
 </body>
 </html>

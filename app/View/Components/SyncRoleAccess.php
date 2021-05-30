@@ -4,16 +4,19 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class CreateRoles extends Component
+class SyncRoleAccess extends Component
 {
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public $roles;
+    public $access;
+    public function __construct($roles,$access)
     {
-        //
+        $this->roles = $roles;
+        $this->access = $access;
     }
 
     /**
@@ -23,6 +26,6 @@ class CreateRoles extends Component
      */
     public function render()
     {
-        return view('components.create-roles');
+        return view('components.sync-role-access');
     }
 }

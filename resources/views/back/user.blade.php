@@ -8,6 +8,7 @@
 @push('css')
 	<link href="/assets/plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 	<link href="/assets/plugins/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" />
+	<link href="/assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" />
 @endpush
 @section('content')
 	<!-- begin breadcrumb -->
@@ -36,29 +37,15 @@
 				<thead>
 					<tr>
 						<th width="1%"></th>
-						<th width="1%" data-orderable="false"></th>
 						<th class="text-nowrap">Name</th>
 						<th class="text-nowrap">Email</th>
 						<th class="text-nowrap">Verify Date</th>
+						<th width="30%" data-orderable="false"></th>
 						<th width="1%" data-orderable="false"></th>
 					</tr>
 				</thead>
 				<tbody>
-					@foreach ($users as $item)
-						<tr class="{{$loop->index%2 == 0?'odd':'even'}}">
-							<td width="1%" class="f-s-600 text-inverse">{{$item->id}}</td>
-							<td width="1%" class="with-img"><img src="/assets/img/user/user-1.jpg" class="img-rounded height-30" /></td>
-							<td>{{$item->name}}</td>
-							<td>{{$item->email}}</td>
-							<td>{{$item->email_verified_at}}</td>
-							<td>
-								<div class="btn-group ">
-									<button class="btn btn-xs btn-pink">Delete</button>
-									<button class="btn btn-xs btn-purple">Edit</button>
-								</div>
-							</td>
-						</tr>
-					@endforeach
+					
         </tbody>
       </table>
 		</div>
@@ -71,5 +58,106 @@
 	<script src="/assets/plugins/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
 	<script src="/assets/plugins/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
 	<script src="/assets/plugins/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
-	<script src="/assets/js/demo/table-manage-default.demo.js"></script>
+	<script src="/assets/plugins/select2/dist/js/select2.min.js"></script>
+	<script src="/assets/plugins/sweetalert/dist/sweetalert.min.js"></script>
+
+	<script>
+		jQuery(function(){
+			let datatables = $('#data-table-default').DataTable({
+					// responsive: true,
+					processing: true,
+					serverSide: true,
+					ajax: '/user',
+					columns: [
+							{data: 'id', name: 'id'},
+							{data: 'name', name: 'name'},
+							{data: 'email', name: 'email'},
+							{data: 'email_verified_at', name: 'email_verified_at'},
+							{data: 'roles', name: 'roles', orderable: false, searchable: false},
+							{data: 'action', name: 'action',orderable: false, searchable: false}
+					],
+					"drawCallback": function( settings ) {
+							$(".multiple-select2").select2({ placeholder: "Select a Roles" });
+							$('.multiple-select2').on('select2:select', function (e) {
+										var data = e.params.data.id.split('/');
+													// console.log(data);
+													$.ajax({
+																		url: "/user/roles/asyn/"+data[0],
+																		method:"POST",
+																		data:{
+																			id:data[0],
+																			role:data[1]
+																		},
+																		success:function(a){
+																			console.log(a)
+																		},
+																		error:function(a){
+																			console.log(a)
+																		}
+														}) // ajax
+											}); //endselect
+
+							$('.multiple-select2').on('select2:unselect',function(e){
+										var data = e.params.data.id.split('/');
+										$.ajax({
+															url: "/user/roles/remove/"+data[0],
+															method:"POST",
+															data:{
+																id:data[0],
+																role:data[1]
+															},
+															success:function(a){
+																console.log(a)
+															},
+															error:function(a){
+																console.log(a)
+															}
+											}) // ajax
+								}) // end select
+								$('.delete-data').on('click',function(a){
+										const link = $(this).data('destroy');
+										swal({
+														title: 'Are you sure?',
+														text: 'You will not be able to recover this imaginary data!',
+														icon: 'error',
+														buttons: {
+															cancel: {
+																text: 'Cancel',
+																value: null,
+																visible: true,
+																className: 'btn btn-success',
+																closeModal: true,
+															},
+															confirm: {
+																text: 'Delete',
+																value: true,
+																visible: true,
+																className: 'btn btn-danger',
+																closeModal: true
+															}
+														}
+											}).then(function(isConfirm) {
+														if(isConfirm)
+															{
+																$.ajax({
+																		url: link,
+																		method:"POST",
+																		success:function(a){
+																			console.log(a)
+																			datatables.ajax.reload();
+																		},
+																		error:function(a){
+																			console.log(a)
+																		}
+																}) // ajax
+															}
+												}); // end swal
+								}) // end delete
+					} // end drawcallback
+			})// end datatables
+			
+		}) // end jquery 
+
+		
+	</script>
 @endpush

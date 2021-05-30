@@ -474,9 +474,6 @@ var ChartNvd3 = function () {
 	};
 }();
 
-$(document).ready(function() {
-	ChartNvd3.init();
-});
 
 myApps.getRandomData = function (data,totalPoints) {
 		if (data.length > 0) {

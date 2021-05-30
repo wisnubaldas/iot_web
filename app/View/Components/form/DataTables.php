@@ -1,19 +1,22 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\form;
 
 use Illuminate\View\Component;
 
-class CreateAccess extends Component
+class DataTables extends Component
 {
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public $header = [];
+    public $body;
+    public function __construct($header,$body = null)
     {
-        //
+        $this->header = $header;
+        $this->body = $body;
     }
 
     /**
@@ -23,6 +26,6 @@ class CreateAccess extends Component
      */
     public function render()
     {
-        return view('components.create-access');
+        return view('components.form.data-tables');
     }
 }

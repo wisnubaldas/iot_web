@@ -6,7 +6,7 @@
     <a href="/" class="navbar-brand">
       <span class="brand-logo"></span>
       <span class="brand-text">
-        <span class="text-primary">IoT</span> Web Apps
+        <span class="text-primary">{{config('paralax.name')}}</span> Web Apps
       </span>
     </a>
     <!-- end navbar-brand -->
