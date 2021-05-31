@@ -16,12 +16,21 @@ class CreateProfilesTable extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->date('birth');
-            $table->string('phone');
-            $table->string('street');
-            $table->string('gender');
+            $table->string('first_name')->default(null);
+            $table->string('last_name')->default(null);
+            $table->string('job_title')->default(null);
+            $table->string('mood')->default(null);
+            $table->date('birth')->default(null);
+            $table->string('phone_home')->default(null);
+            $table->string('phone_office')->default(null);
+            $table->string('phone_mobile')->default(null);
+            $table->string('country')->default(null);
+            $table->string('city')->default(null);
+            $table->string('state')->default(null);
+            $table->string('street')->default(null);
+            $table->text('website')->default(null);
+            $table->string('gender')->default(null);
+            $table->string('language')->default(null);
             $table->string('foto')->default(null);
             $table->json('image_collection')->default(null);
             $table->timestamps();
