@@ -6,14 +6,15 @@ use Illuminate\View\Component;
 
 class about extends Component
 {
+    public $profile;   
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($profile)
     {
-        //
+        $this->profile = $profile;
     }
 
     /**

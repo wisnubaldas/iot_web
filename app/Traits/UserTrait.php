@@ -76,6 +76,7 @@ trait UserTrait
     }
     public function get_profile($id_user)
     {
-        return Profile::where('user_id',$id_user)->first();
+        return User::with('profile')->find($id_user);
+        // return Profile::with('user')->where('user_id',$id_user)->first();
     }
 }

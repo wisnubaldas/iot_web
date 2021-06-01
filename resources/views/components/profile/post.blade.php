@@ -1,4 +1,4 @@
-<div class="tab-pane fade show active" id="profile-post">
+<div class="tab-pane fade " id="profile-post">
     <!-- begin timeline -->
     <ul class="timeline">
         <li>

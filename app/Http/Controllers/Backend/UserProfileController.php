@@ -10,7 +10,12 @@ class UserProfileController extends Controller
     use UserTrait;
     public function index($id)
     {
-        $profile = $this->get_profile($id);
-        return view('back.user-profile',compact('profile'));
+        $user = $this->get_profile($id);
+        return view('back.user-profile',compact('user'));
+    }
+    public function edit($id)
+    {
+        $user = $this->get_profile($id);
+        return view('back.user-profile-edit',compact('user'));
     }
 }

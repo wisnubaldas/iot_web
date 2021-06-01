@@ -18,14 +18,14 @@
 			<div class="profile-header-content">
 				<!-- BEGIN profile-header-img -->
 				<div class="profile-header-img">
-					{{-- <img src="/assets/img/user/user-13.jpg" alt=""> --}}
 					<img src="/assets/img/user/no_image.png" alt="">
 				</div>
 				<!-- END profile-header-img -->
 				<!-- BEGIN profile-header-info -->
 				<div class="profile-header-info">
-					<h4 class="mt-0 mb-1">Sean Ngu</h4>
-					<p class="mb-2">UXUI + Frontend Developer</p>
+					<h4 class="mt-0 mb-1">{{$user->name}}</h4>
+					<p class="mb-2">dasdasd</p>
+					<a href="/user/profile/edit/{{$user->id}}" class="btn btn-xs btn-purple">Edit Profile</a>
 					<a href="/user" class="btn btn-xs btn-yellow">Back to Users</a>
 				</div>
 				<!-- END profile-header-info -->
@@ -33,8 +33,8 @@
 			<!-- END profile-header-content -->
 			<!-- BEGIN profile-header-tab -->
 			<ul class="profile-header-tab nav nav-tabs">
-				<li class="nav-item"><a href="#profile-post" class="nav-link active" data-toggle="tab">POSTS</a></li>
-				<li class="nav-item"><a href="#profile-about" class="nav-link" data-toggle="tab">ABOUT</a></li>
+				<li class="nav-item"><a href="#profile-post" class="nav-link" data-toggle="tab">POSTS</a></li>
+				<li class="nav-item"><a href="#profile-about active" class="nav-link" data-toggle="tab">ABOUT</a></li>
 				<li class="nav-item"><a href="#profile-photos" class="nav-link" data-toggle="tab">PHOTOS</a></li>
 				<li class="nav-item"><a href="#profile-videos" class="nav-link" data-toggle="tab">VIDEOS</a></li>
 				{{-- <li class="nav-item"><a href="#profile-friends" class="nav-link" data-toggle="tab">FRIENDS</a></li> --}}
@@ -51,7 +51,7 @@
 			<x-profile.post />
 			<!-- end #profile-post tab -->
 			<!-- begin #profile-about tab -->
-			<x-profile.about />
+			<x-profile.about :profile="$user->profile"/>
 			<!-- end #profile-about tab -->
 			<!-- begin #profile-photos tab -->
 			<x-profile.photos />

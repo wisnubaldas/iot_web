@@ -1,4 +1,4 @@
-<div class="tab-pane fade" id="profile-about">
+<div class="tab-pane fade show active" id="profile-about">
     <!-- begin table -->
     <div class="table-responsive form-inline">
         <table class="table table-profile">
@@ -13,7 +13,9 @@
             <tbody>
                 <tr class="highlight">
                     <td class="field">Mood</td>
-                    <td><a href="javascript:;">Add Mood Message</a></td>
+                    <td>
+                        <a href="javascript:;" id="add-motto">Add Mood Messagesad</a>
+                    </td>
                 </tr>
                 <tr class="divider">
                     <td colspan="2"></td>
@@ -117,3 +119,33 @@
     </div>
     <!-- end table -->
 </div>
+
+@push('scripts')
+    <script>
+        const profile = "{{$profile}}";
+        let frm = {
+            inputan:function(el,attr){
+                el.on('click',function(){
+                    $(this).hide();
+                    $(this).parent().append(`<div class="form-group col-lg-12"><input
+                                            class="form-control form-control-sm" 
+                                            name="${attr.name}"
+                                            id="${attr.id}"
+                                            type="text" 
+                                            /></div`)
+                    })
+                }
+            }
+        jQuery(function(){
+            
+            if(!profile)
+            {
+                frm.inputan($('#add-motto'),{
+                                                'name':'motto',
+                                                'id':'input-motto'
+                                            })
+            }
+        })
+        
+    </script>
+@endpush

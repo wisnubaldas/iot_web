@@ -45,6 +45,7 @@ Route::prefix('user')->middleware('auth')->group(function(){
     Route::post('/update/{id}',[App\Http\Controllers\Backend\UserController::class, 'update']);
     Route::post('/delete/{id}',[App\Http\Controllers\Backend\UserController::class, 'delete']);
     Route::get('/profile/{id}',[App\Http\Controllers\Backend\UserProfileController::class, 'index']);
+    Route::get('/profile/edit/{id}',[App\Http\Controllers\Backend\UserProfileController::class, 'edit']);
 
     Route::group(['middleware' => ['role:super']], function () {
         Route::get('/roles',[App\Http\Controllers\Backend\UserController::class, 'roles']);
