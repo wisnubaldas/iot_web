@@ -1,27 +1,33 @@
 {
-  "_from": "blueimp-load-image@5",
+  "_args": [
+    [
+      "blueimp-load-image@5.14.0",
+      "/Users/wisnubaldas/Documents/project/iot_web"
+    ]
+  ],
+  "_from": "blueimp-load-image@5.14.0",
   "_id": "blueimp-load-image@5.14.0",
   "_inBundle": false,
   "_integrity": "sha512-g5l+4dCOESBG8HkPLdGnBx8dhEwpQHaOZ0en623sl54o3bGhGMLYGc54L5cWfGmPvfKUjbsY7LOAmcW/xlkBSA==",
   "_location": "/blueimp-load-image",
+  "_optional": true,
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "blueimp-load-image@5",
+    "raw": "blueimp-load-image@5.14.0",
     "name": "blueimp-load-image",
     "escapedName": "blueimp-load-image",
-    "rawSpec": "5",
+    "rawSpec": "5.14.0",
     "saveSpec": null,
-    "fetchSpec": "5"
+    "fetchSpec": "5.14.0"
   },
   "_requiredBy": [
     "/blueimp-file-upload"
   ],
   "_resolved": "https://registry.npmjs.org/blueimp-load-image/-/blueimp-load-image-5.14.0.tgz",
-  "_shasum": "e8086415e580df802c33ff0da6b37a8d20205cc6",
-  "_spec": "blueimp-load-image@5",
-  "_where": "/Users/mac/Documents/baldas/iot_web/node_modules/blueimp-file-upload",
+  "_spec": "5.14.0",
+  "_where": "/Users/wisnubaldas/Documents/project/iot_web",
   "author": {
     "name": "Sebastian Tschan",
     "url": "https://blueimp.net"
@@ -29,8 +35,6 @@
   "bugs": {
     "url": "https://github.com/blueimp/JavaScript-Load-Image/issues"
   },
-  "bundleDependencies": false,
-  "deprecated": false,
   "description": "JavaScript Load Image is a library to load images provided as File or Blob objects or via URL. It returns an optionally scaled, cropped or rotated HTML img or canvas element. It also provides methods to parse image metadata to extract IPTC and Exif tags as well as embedded thumbnail images, to overwrite the Exif Orientation value and to restore the complete image header after resizing.",
   "devDependencies": {
     "eslint": "7",

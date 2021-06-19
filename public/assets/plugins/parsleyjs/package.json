@@ -1,27 +1,32 @@
 {
-  "_from": "parsleyjs@^2.9.2",
+  "_args": [
+    [
+      "parsleyjs@2.9.2",
+      "/Users/wisnubaldas/Documents/project/iot_web"
+    ]
+  ],
+  "_from": "parsleyjs@2.9.2",
   "_id": "parsleyjs@2.9.2",
   "_inBundle": false,
   "_integrity": "sha512-DKS2XXTjEUZ1BJWUzgXAr+550kFBZrom2WYweubqdV7WzdNC1hjOajZDfeBPoAZMkXumJPlB3v37IKatbiW8zQ==",
   "_location": "/parsleyjs",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "parsleyjs@^2.9.2",
+    "raw": "parsleyjs@2.9.2",
     "name": "parsleyjs",
     "escapedName": "parsleyjs",
-    "rawSpec": "^2.9.2",
+    "rawSpec": "2.9.2",
     "saveSpec": null,
-    "fetchSpec": "^2.9.2"
+    "fetchSpec": "2.9.2"
   },
   "_requiredBy": [
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/parsleyjs/-/parsleyjs-2.9.2.tgz",
-  "_shasum": "67c96961d371821f2623965fa2cc81a4522874cb",
-  "_spec": "parsleyjs@^2.9.2",
-  "_where": "/Users/mac/Documents/baldas/iot_web",
+  "_spec": "2.9.2",
+  "_where": "/Users/wisnubaldas/Documents/project/iot_web",
   "author": {
     "name": "Guillaume Potier",
     "email": "guillaume@wisembly.com",
@@ -30,11 +35,9 @@
   "bugs": {
     "url": "https://github.com/guillaumepotier/Parsley.js/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "jquery": ">=1.8.0"
   },
-  "deprecated": false,
   "description": "Validate your forms, frontend, without writing a single line of javascript!",
   "devDependencies": {
     "@babel/core": "^7.0.0",

@@ -1,0 +1,4 @@
+<?php
+Route::prefix('{{ prefix }}')->group(function(){
+    Route::get('/',[App\Http\Controllers\{{ controller }}::class, '{{ method }}']);
+});

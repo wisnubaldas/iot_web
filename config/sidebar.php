@@ -22,6 +22,17 @@ return [
 				'url' => '/gate',
 			],
 			[
+				'icon' => 'fab fa-lg fa-fw fa-blogger-b',
+				'title' => 'Blog Config',
+				'url' => 'javascript:;',
+				'caret' => true,
+				'sub_menu' => [[
+						'url' => '/blog/about',
+						'title' => 'About Us'
+					],
+				]
+			],
+			[
 				'icon' => 'fa fa-th-large',
 				'title' => 'User Config',
 				'url' => 'javascript:;',
