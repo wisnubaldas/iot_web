@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Blog\Profile;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 trait UserTrait
 {
@@ -41,7 +42,7 @@ trait UserTrait
                                 }
                         }
                         $tpl .= '<option '.$selected.' value="'.$user->id.'/'.$v->name.'">'.$v->name.'</option>';
-                    }                    
+                    }
             $tpl .= '</select>';
             return $tpl;
         })
@@ -49,7 +50,7 @@ trait UserTrait
             return '<div class="btn-group ">
                         <a class="btn btn-xs btn-pink delete-data" href="javascript:;" data-destroy="/user/delete/'.$user->id.'">Delete</a>
                         <a class="btn btn-xs btn-purple edit" href="/user/edit/'.$user->id.'">Edit</a>
-                        <a class="btn btn-xs btn-green edit" href="/user/profile/'.$user->id.'">Profile</a>
+                        <a class="btn btn-xs btn-green edit" href="/user-profile/'.$user->id.'">Profile</a>
                     </div>';
         })
         ->rawColumns(['action','roles'])
@@ -67,16 +68,37 @@ trait UserTrait
                         ->withErrors($validator)
                         ->withInput();
         }
-        
+
             $user = new User;
             $user->name = $request->name;
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
             $user->save();
+            $profile = new Profile;
+            $profile->user_id = $user->id;
+            $profile->save();
     }
     public function get_profile($id_user)
     {
         return User::with('profile')->find($id_user);
         // return Profile::with('user')->where('user_id',$id_user)->first();
+    }
+    public function update_profile($request)
+    {
+        if(in_array($request->name,['phone_home','phone_office','phone_mobile']) && preg_match('~[A-Z|a-z]+~', $request->value))
+        {
+            return response('Nomer telepon tidak boleh mengandung huruf', 500)
+                  ->header('Content-Type', 'text/plain');
+        }
+        $profile = Profile::where('user_id',$request->pk)->first();
+        if(!$profile)
+        {
+            return response('Hello World', 500)
+                  ->header('Content-Type', 'text/plain');
+        }
+
+        $profile[$request->name] = $request->value;
+        $profile->save();
+        return $profile->updated_at->format('l, d F Y H:i:s');
     }
 }

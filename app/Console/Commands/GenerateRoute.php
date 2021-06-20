@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Traits\RouterTrait;
+use App\Traits\CorengTrait;
 use Illuminate\Support\Facades\Artisan;
 class GenerateRoute extends Command
 {
@@ -39,11 +40,17 @@ class GenerateRoute extends Command
      */
     public function handle()
     {
+        $file = CorengTrait::list_all_file('app/Http/Controllers');
         $nama = $this->route_name($this->argument('nama'));
         $route_tipe = $this->choice(
             'Kamu mau buat routing nya dimana...?',
             ['back_route', 'front_route']
         );
+        $this->table(
+            ['File', 'Path'],
+            $file
+        );
+
         $controller = $this->ask('lokasi path controller nya dimana...?');
         $method = $this->ask('Nama method "'.$controller.'" apa...?');
         $this->stub_to_php([

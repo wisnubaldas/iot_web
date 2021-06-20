@@ -18,7 +18,7 @@
                     <option value="{{ $item->id }}">{{ $item->name }} /{{ $item->email }}</option>
                 @endforeach
             </x-form.select>
-            <x-form.textarea label="Moto" type="text" name="motto" id="motto" rows="7" />
+            <x-form.textarea label="Moto" type="text" name="motto" id="motto" rows="5" />
             <x-form.textarea label="Story" type="text" name="story" id="story" rows="7" />
             <x-form.textarea label="Philosopy" type="text" name="philosopy" id="philosopy" rows="7" />
             <x-form.select label="Experience" class="multiple-select2" type="text" multiple="multiple" name="experiencce"

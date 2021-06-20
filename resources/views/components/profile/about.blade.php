@@ -1,12 +1,25 @@
 <div class="tab-pane fade show active" id="profile-about">
     <!-- begin table -->
-    <div class="table-responsive form-inline">
+    @dump($profile)
+    <div class="table-responsive">
         <table class="table table-profile">
             <thead>
                 <tr>
-                    <th></th>
                     <th>
-                        <h4>Micheal	Meyer <small>Lorraine Stokes</small></h4>
+                    <th></th>
+                        <h4>
+                            <a href="javascript:;" id="first_name" data-type="text" class="edit-table text-black"
+                                    data-pk="{{request()->segment(2)}}" data-placement="right"
+                                    data-placeholder="First Name Required"
+                                    data-title="Enter your Firstname">{{Str::of($profile->first_name)->title()}} </a>
+                            <a href="javascript:;" id="last_name" data-type="text" class="edit-table text-black"
+                                    data-pk="{{request()->segment(2)}}" data-placement="right"
+                                    data-placeholder="Last Name Required"
+                                    data-title="Enter your Firstname">{{Str::of($profile->last_name)->title()}} </a>
+                            <small id="updated_at">
+                                Last Updated : {{$profile->updated_at}}
+                            </small>
+                        </h4>
                     </th>
                 </tr>
             </thead>
@@ -14,7 +27,14 @@
                 <tr class="highlight">
                     <td class="field">Mood</td>
                     <td>
-                        <a href="javascript:;" id="add-motto">Add Mood Messagesad</a>
+                        <a href="javascript:;" id="mood"
+                            data-type="textarea"
+                            data-rows="5"
+                            data-cols="100"
+                            data-pk="{{request()->segment(2)}}"
+                            class="edit-table text-black"
+                            data-placeholder="Your comments here..."
+                            data-original-title="Enter comments">{{$profile->mood??'Add Mood Messagesad'}}</a>
                     </td>
                 </tr>
                 <tr class="divider">
@@ -22,15 +42,36 @@
                 </tr>
                 <tr>
                     <td class="field">Mobile</td>
-                    <td><i class="fa fa-mobile fa-lg m-r-5"></i> +1-(847)- 367-8924 <a href="javascript:;" class="m-l-5">Edit</a></td>
+                    <td>
+                        <i class="fa fa-mobile fa-lg m-r-5"></i>
+                        <a href="javascript:;" id="phone_mobile"
+                            data-pk="{{request()->segment(2)}}"
+                            class="edit-table text-black"
+                            data-placeholder="Add Mobile Phone Here..."
+                        >{{$profile->phone_mobile??'Add Number'}}</a>
+                        </td>
                 </tr>
                 <tr>
                     <td class="field">Home</td>
-                    <td><a href="javascript:;">Add Number</a></td>
+                    <td>
+                        <i class="fa fa-home fa-lg m-r-5"></i>
+                        <a href="javascript:;" id="phone_home"
+                            data-pk="{{request()->segment(2)}}"
+                            class="edit-table text-black"
+                            data-placeholder="Add Home Phone Here..."
+                        >{{$profile->phone_home??'Add Number'}}</a>
+                    </td>
                 </tr>
                 <tr>
                     <td class="field">Office</td>
-                    <td><a href="javascript:;">Add Number</a></td>
+                    <td>
+                        <i class="fa fa-briefcase fa-lg m-r-5"></i>
+                        <a href="javascript:;" id="phone_office"
+                            data-pk="{{request()->segment(2)}}"
+                            class="edit-table text-black"
+                            data-placeholder="Add Office Phone Here..."
+                        >{{$profile->phone_office??'Add Number'}}</a>
+                    </td>
                 </tr>
                 <tr class="divider">
                     <td colspan="2"></td>
@@ -122,30 +163,54 @@
 
 @push('scripts')
     <script>
-        const profile = "{{$profile}}";
-        let frm = {
-            inputan:function(el,attr){
-                el.on('click',function(){
-                    $(this).hide();
-                    $(this).parent().append(`<div class="form-group col-lg-12"><input
-                                            class="form-control form-control-sm" 
-                                            name="${attr.name}"
-                                            id="${attr.id}"
-                                            type="text" 
-                                            /></div`)
-                    })
-                }
-            }
-        jQuery(function(){
-            
-            if(!profile)
+        const user_id = "{{request()->segment(2)}}";
+        let updated_at = function(date,newValue)
+        {
+            $('#updated_at').html('Last Updated : '+date);
+        }
+        let error_response = function(a,newValue)
+        {
+            if(a.status == 500)
             {
-                frm.inputan($('#add-motto'),{
-                                                'name':'motto',
-                                                'id':'input-motto'
-                                            })
+                return newValue = a.responseText;
             }
-        })
-        
+            return newValue = a.statusText;
+        }
+        let about = function(){
+            $.fn.editable.defaults.mode = 'inline';
+            $.fn.editable.defaults.inputclass = 'form-control input-sm col-md-12';
+            $.fn.editable.defaults.url = '/user-profile/update/';
+            $('.edit-table').editable({
+                validate: function(value) {
+                    if($.trim(value) === '') {
+                        return 'Wajib di isi....';
+                    }
+                },
+                success: updated_at,
+                error:error_response
+            });
+        }
+        var bootAbout = function () {
+                "use strict";
+                return {
+                    //main function
+                    init: function () {
+                        about()
+                    }
+                };
+            }();
+
+            $(document).ready(function() {
+                    bootAbout.init();
+            });
+
     </script>
+@endpush
+@push('css')
+    <style>
+        .editableform {
+            width:50em;
+        }
+
+    </style>
 @endpush

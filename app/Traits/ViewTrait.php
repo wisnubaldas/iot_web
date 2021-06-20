@@ -2,12 +2,11 @@
 
 namespace App\Traits;
 use Illuminate\Support\Str;
-
+use App\Traits\CorengTrait;
 trait ViewTrait
 {
     public function list_all_folder($dir,&$new_json = [])
     {
-
         $ffs = scandir($dir);
         foreach ($ffs as $i => $ff) {
             if ($ff != '.' && $ff != '..')  {

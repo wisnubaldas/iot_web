@@ -28,13 +28,13 @@ trait RouterTrait
         $content = $this->replace_stub($router);
         $route_path = base_path().'/routes/'.$type.'/'.$nama.'.php';
         $this->cek_file($route_path);
-        return file_put_contents($route_path,$content);
+            return file_put_contents($route_path,$content);
     }
     protected function cek_file($path)
     {
         if(file_exists($path))
         {
-            throw new \ErrorException("File exis canot create {$path}.");
+            throw new \ErrorException("Gagal buat Route file sudah ada....!!! ".PHP_EOL.$path);
         }
     }
 }
